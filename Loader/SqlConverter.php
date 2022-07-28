@@ -1,10 +1,10 @@
 <?php
 
-namespace Naldz\Bundle\FixturamaBundle\Fixturama;
+namespace Naldz\Fixturama\Loader;
 
-use Naldz\Bundle\FixturamaBundle\Fixturama\ModelFixtureGenerator;
-use Naldz\Bundle\FixturamaBundle\Fixturama\Schema\SchemaDefinition;
-use Naldz\Bundle\FixturamaBundle\Fixturama\Exception\IncompleteDatasetException;
+use Naldz\Fixturama\Generator\ModelFixtureGenerator;
+use Naldz\Fixturama\Schema\SchemaDefinition;
+use Naldz\Fixturama\Exception\IncompleteDatasetException;
 
 class SqlConverter
 {

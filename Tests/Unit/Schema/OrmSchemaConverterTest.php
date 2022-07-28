@@ -1,19 +1,16 @@
 <?php
 
-namespace Naldz\Bundle\FixturamaBundle\Tests\Unit\Fixturama;
+namespace Naldz\Fixturama\Tests\Unit\Schema;
 
-use Symfony\Component\Yaml\Yaml;
-use Symfony\Component\Config\Definition\Processor;
-use Naldz\Bundle\FixturamaBundle\Fixturama\Schema\OrmSchemaConverter;
+use Naldz\Fixturama\Schema\OrmSchemaParser;
 
-
-class OrmSchemaConverterTest extends \PHPUnit_Framework_TestCase
+class OrmSchemaParserTest extends \PHPUnit_Framework_TestCase
 {
     private $sut;
 
     public function setUp()
     {
-        $this->sut = new OrmSchemaConverter();
+        $this->sut = new OrmSchemaParser();
     }
 
     public function testSuccessfulConversion()

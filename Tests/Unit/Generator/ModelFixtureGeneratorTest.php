@@ -1,8 +1,8 @@
 <?php
 
-namespace Naldz\Bundle\FixturamaBundle\Tests\Unit\Fixturama;
+namespace Naldz\Fixturama\Tests\Unit\Generator;
 
-use Naldz\Bundle\FixturamaBundle\Fixturama\ModelFixtureGenerator;
+use Naldz\Fixturama\Generator\ModelFixtureGenerator;
 
 class FixtureModeltest extends \PHPUnit_Framework_TestCase
 {
@@ -43,7 +43,7 @@ class FixtureModeltest extends \PHPUnit_Framework_TestCase
 
     public function testGeneratingWithUnknownDataPresetFieldsThrowsException()
     {
-        $this->setExpectedException('Naldz\Bundle\FixturamaBundle\Fixturama\Exception\UnknownModelFieldException');
+        $this->setExpectedException('Naldz\Fixturama\Exception\UnknownModelFieldException');
         $fakerMock = $this->createFakerMock($this->fakerMockDefinition);
         $fixtureModel = new ModelFixtureGenerator($fakerMock);
         $fixtureModel->generate($this->definition, array(

@@ -1,8 +1,8 @@
 <?php
 
-namespace Naldz\Bundle\FixturamaBundle\Tests\Unit\Fixturama\Schema;
+namespace Naldz\Fixturama\Tests\Unit\Schema;
 
-use Naldz\Bundle\FixturamaBundle\Fixturama\Schema\SchemaDefinition;
+use Naldz\Fixturama\Schema\SchemaDefinition;
 
 class SchemaDefinitionTest extends \PHPUnit_Framework_TestCase
 {
@@ -39,37 +39,37 @@ class SchemaDefinitionTest extends \PHPUnit_Framework_TestCase
 
     public function testUnknownDatabaseNameThrowsException()
     {
-        $this->setExpectedException('Naldz\Bundle\FixturamaBundle\Fixturama\Exception\UnknownDatabaseException');
+        $this->setExpectedException('Naldz\Fixturama\Exception\UnknownDatabaseException');
         $this->schemaDefinition->getDatabaseDefinition('unknown_database');
     }
 
     public function testUnknownModelNameThrowsException()
     {
-        $this->setExpectedException('Naldz\Bundle\FixturamaBundle\Fixturama\Exception\UnknownModelException');
+        $this->setExpectedException('Naldz\Fixturama\Exception\UnknownModelException');
         $this->schemaDefinition->getModelDefinition('db1','unknown_model');
     }
 
     public function testUnknownModelFieldNameThrowsException()
     {
-        $this->setExpectedException('Naldz\Bundle\FixturamaBundle\Fixturama\Exception\UnknownModelFieldException');
+        $this->setExpectedException('Naldz\Fixturama\Exception\UnknownModelFieldException');
         $this->schemaDefinition->getModelFieldDefinition('db1', 'tb1', 'unknown_field');
     }
 
     public function testUnknownDatabaseWhileGettingModelThrowsException()
     {
-        $this->setExpectedException('Naldz\Bundle\FixturamaBundle\Fixturama\Exception\UnknownDatabaseException');
+        $this->setExpectedException('Naldz\Fixturama\Exception\UnknownDatabaseException');
         $this->schemaDefinition->getDatabaseDefinition('unknown_database', 'tb1');
     }
 
     public function testUnknownDatabaseWhileGettingFieldThrowsException()
     {
-        $this->setExpectedException('Naldz\Bundle\FixturamaBundle\Fixturama\Exception\UnknownDatabaseException');
+        $this->setExpectedException('Naldz\Fixturama\Exception\UnknownDatabaseException');
         $this->schemaDefinition->getDatabaseDefinition('unknown_database', 'tb1', 'field1');
     }
 
     public function testUnknownModelWhileGettingFieldThrowsException()
     {
-        $this->setExpectedException('Naldz\Bundle\FixturamaBundle\Fixturama\Exception\UnknownModelException');
+        $this->setExpectedException('Naldz\Fixturama\Exception\UnknownModelException');
         $this->schemaDefinition->getModelFieldDefinition('db1','unknown_model','title');
     }
 

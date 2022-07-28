@@ -1,6 +1,6 @@
 <?php
 
-namespace Naldz\Bundle\FixturamaBundle\Fixturama;
+namespace Naldz\Fixturama\Loader;
 
 class FixturamaPdo extends \PDO
 {

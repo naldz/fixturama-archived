@@ -1,6 +1,6 @@
 <?php
 
-namespace Naldz\Bundle\FixturamaBundle\Fixturama\Exception;
+namespace Naldz\Fixturama\Exception;
 
 use \Exception; 
 

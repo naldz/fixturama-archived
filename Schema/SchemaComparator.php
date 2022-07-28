@@ -1,20 +1,12 @@
 <?php
 
-namespace Naldz\Bundle\FixturamaBundle\Fixturama\Schema;
+namespace Naldz\Fixturama\Schema;
 
-use Naldz\Bundle\FixturamaBundle\Fixturama\Schema\SchemaDefinition;
+use Naldz\Fixturama\Schema\SchemaDefinition;
 
 class SchemaComparator
 {
-
-    private $schemaDefinition = null;
-
-    public function __construct(SchemaDefinition $schemaDefinition)
-    {
-        $this->schemaDefinition = $schemaDefinition;
-    }
-
-    public function compare($rawOrmSchema)
+    public function compare(SchemaDefinition $schemaDefinition, $rawOrmSchema)
     {
         $finalAddedDatabaseNames = array();
         $finalRemovedDatabaseNames = array();
@@ -24,7 +16,7 @@ class SchemaComparator
         $finalRemovedFieldNames = array();
 
         $ormDatabaseNames = array_keys($rawOrmSchema);
-        $fixtureDatabaseNames = $this->schemaDefinition->getDatabaseNames();
+        $fixtureDatabaseNames = $schemaDefinition->getDatabaseNames();
 
         $finalAddedDatabaseNames = array_values(array_diff($ormDatabaseNames, $fixtureDatabaseNames));
         $finalRemovedDatabaseNames = array_values(array_diff($fixtureDatabaseNames, $ormDatabaseNames));
@@ -32,7 +24,7 @@ class SchemaComparator
         foreach ($ormDatabaseNames as $ormDbName) {
             if (in_array($ormDbName, $fixtureDatabaseNames)) {
                 $ormTablesNames = array_keys($rawOrmSchema[$ormDbName]);
-                $fixtureModelNames = $this->schemaDefinition->getModelNames($ormDbName);
+                $fixtureModelNames = $schemaDefinition->getModelNames($ormDbName);
 
                 $addedTableNames = array_diff($ormTablesNames, $fixtureModelNames);
 
@@ -49,7 +41,7 @@ class SchemaComparator
                     if (in_array($ormTableName, $fixtureModelNames)) {
 
                         $ormFieldNames = array_keys($rawOrmSchema[$ormDbName][$ormTableName]);
-                        $fixtureFieldNames = $this->schemaDefinition->getModelFieldNames($ormDbName, $ormTableName);
+                        $fixtureFieldNames = $schemaDefinition->getModelFieldNames($ormDbName, $ormTableName);
 
                         $addedFieldNames = array_diff($ormFieldNames, $fixtureFieldNames);
                         foreach ($addedFieldNames as $addedFieldName) {

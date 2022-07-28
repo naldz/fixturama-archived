@@ -1,8 +1,8 @@
 <?php
 
-namespace Naldz\Bundle\FixturamaBundle\Fixturama;
+namespace Naldz\Fixturama\Generator;
 
-use Naldz\Bundle\FixturamaBundle\Fixturama\Exception\UnknownModelFieldException;
+use Naldz\Fixturama\Exception\UnknownModelFieldException;
 
 class ModelFixtureGenerator
 {

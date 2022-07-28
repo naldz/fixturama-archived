@@ -1,12 +1,12 @@
 <?php
 
-namespace Naldz\Bundle\FixturamaBundle\Fixturama;
+namespace Naldz\Fixturama\Generator;
 
-use Naldz\Bundle\FixturamaBundle\Fixturama\ModelFixtureGenerator;
-use Naldz\Bundle\FixturamaBundle\Fixturama\Schema\SchemaDefinition;
-use Naldz\Bundle\FixturamaBundle\Fixturama\Exception\UnknownModelException;
-use Naldz\Bundle\FixturamaBundle\Fixturama\Exception\UnknownModelFieldException;
-use Naldz\Bundle\FixturamaBundle\Fixturama\Exception\InvalidDatabaseAndModelNameCombinationException;
+use Naldz\Fixturama\Generator\ModelFixtureGenerator;
+use Naldz\Fixturama\Schema\SchemaDefinition;
+use Naldz\Fixturama\Exception\UnknownModelException;
+use Naldz\Fixturama\Exception\UnknownModelFieldException;
+use Naldz\Fixturama\Exception\InvalidDatabaseAndModelNameCombinationException;
 
 class FixtureGenerator
 {

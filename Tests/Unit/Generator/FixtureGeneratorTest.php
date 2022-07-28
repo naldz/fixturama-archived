@@ -1,16 +1,16 @@
 <?php
 
-namespace Naldz\Bundle\FixturamaBundle\Tests\Unit\Fixturama;
+namespace Naldz\Fixturama\Tests\Unit\Generator;
 
-use Naldz\Bundle\FixturamaBundle\Fixturama\FixtureGenerator;
-use Naldz\Bundle\FixturamaBundle\Fixturama\Exception\UnknownModelException;
-use Naldz\Bundle\FixturamaBundle\Fixturama\Exception\UnknownModelFieldException;
+use Naldz\Fixturama\Generator\FixtureGenerator;
+use Naldz\Fixturama\Exception\UnknownModelException;
+use Naldz\Fixturama\Exception\UnknownModelFieldException;
 
 class FixtureGeneratorTest extends \PHPUnit_Framework_TestCase
 {
     public function testInvalidDatabaseAndModelNameCombinationThrowsException()
     {
-        $this->setExpectedException('Naldz\Bundle\FixturamaBundle\Fixturama\Exception\InvalidDatabaseAndModelNameCombinationException');
+        $this->setExpectedException('Naldz\Fixturama\Exception\InvalidDatabaseAndModelNameCombinationException');
         $schemaDefinitionMock = $this->createSchemaDefinitionMock();
         $modelFixtureGeneratorMock = $this->createModelFixtureGeneratorMock();
 
@@ -22,7 +22,7 @@ class FixtureGeneratorTest extends \PHPUnit_Framework_TestCase
 
     public function testGettingOfUnknownModelThrowsException()
     {
-        $this->setExpectedException('Naldz\Bundle\FixturamaBundle\Fixturama\Exception\UnknownModelException');
+        $this->setExpectedException('Naldz\Fixturama\Exception\UnknownModelException');
         $schemaDefinitionMock = $this->createSchemaDefinitionMock(array(
             'blog_author' => new UnknownModelException('Fake UnknownModelException')
         ));
@@ -38,7 +38,7 @@ class FixtureGeneratorTest extends \PHPUnit_Framework_TestCase
 
     public function testModelFixtureGeneratorErrorThrowsException()
     {
-        $this->setExpectedException('Naldz\Bundle\FixturamaBundle\Fixturama\Exception\UnknownModelFieldException');
+        $this->setExpectedException('Naldz\Fixturama\Exception\UnknownModelFieldException');
         $schemaDefinitionMock = $this->createSchemaDefinitionMock(array(
             'blog_author' => array(
                 'fields' => array(
@@ -130,7 +130,7 @@ class FixtureGeneratorTest extends \PHPUnit_Framework_TestCase
 
     private function createSchemaDefinitionMock($data = array())
     {
-        $mock = $this->getMockBuilder('Naldz\Bundle\FixturamaBundle\Fixturama\Schema\SchemaDefinition')
+        $mock = $this->getMockBuilder('Naldz\Fixturama\Schema\SchemaDefinition')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -152,7 +152,7 @@ class FixtureGeneratorTest extends \PHPUnit_Framework_TestCase
 
     private function createModelFixtureGeneratorMock($results = array())
     {
-        $mock = $this->getMockBuilder('Naldz\Bundle\FixturamaBundle\Fixturama\ModelFixtureGenerator')
+        $mock = $this->getMockBuilder('Naldz\Fixturama\Generator\ModelFixtureGenerator')
             ->disableOriginalConstructor()
             ->getMock();
 

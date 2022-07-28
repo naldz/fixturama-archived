@@ -1,17 +1,17 @@
 <?php
 
-namespace Naldz\Bundle\FixturamaBundle\Tests\Unit\Fixturama\Schema;
+namespace Naldz\Fixturama\Tests\Unit\Schema;
 
-use Naldz\Bundle\FixturamaBundle\Fixturama\Schema\SchemaComparator;
-
+use Naldz\Fixturama\Schema\SchemaComparator;
 
 class SchemaComparatorTest extends \PHPUnit_Framework_TestCase
 {
     private $sut;
+    private $schemaDefinitionMock;
 
     public function setUp()
     {
-        $schemaDefinitionMock = $this->createSchemaDefinitionMock(array(
+        $this->schemaDefinitionMock = $this->createSchemaDefinitionMock(array(
             'db1' => array(
                 'table1' => array(
                     'field1' => array('type'=> 'numberBetween', 'params' => array(0, 99999)),
@@ -28,12 +28,12 @@ class SchemaComparatorTest extends \PHPUnit_Framework_TestCase
                 )
             )
         ));
-        $this->sut = new SchemaComparator($schemaDefinitionMock);
+        $this->sut = new SchemaComparator();
     }
 
     public function testNewEntitiesAreDetected()
     {
-        $schemaDiff = $this->sut->compare(array(
+        $schemaDiff = $this->sut->compare($this->schemaDefinitionMock , array(
             'db1' => array(
                 'table1' => array(
                     'field1' => array('type' => 'INT'),
@@ -73,7 +73,7 @@ class SchemaComparatorTest extends \PHPUnit_Framework_TestCase
 
     public function testRemovedEntitiesAreDetected()
     {
-        $schemaDiff = $this->sut->compare(array(
+        $schemaDiff = $this->sut->compare($this->schemaDefinitionMock, array(
             'db1' => array(
                 'table1' => array(
                     'field1' => array('type' => 'INT')
@@ -89,7 +89,7 @@ class SchemaComparatorTest extends \PHPUnit_Framework_TestCase
 
     private function createSchemaDefinitionMock($data = array())
     {
-        $mock = $this->getMockBuilder('Naldz\Bundle\FixturamaBundle\Fixturama\Schema\SchemaDefinition')
+        $mock = $this->getMockBuilder('Naldz\Fixturama\Schema\SchemaDefinition')
             ->disableOriginalConstructor()
             ->getMock();
 

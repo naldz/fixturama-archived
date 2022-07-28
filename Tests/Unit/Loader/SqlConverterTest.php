@@ -2,7 +2,7 @@
 
 namespace Naldz\Bundle\FixturamaBundle\Tests\Unit\Fixturama;
 
-use Naldz\Bundle\FixturamaBundle\Fixturama\SqlConverter;
+use Naldz\Fixturama\Loader\SqlConverter;
 
 class SqlConverterTest extends \PHPUnit_Framework_TestCase
 {
@@ -47,7 +47,7 @@ class SqlConverterTest extends \PHPUnit_Framework_TestCase
 
     public function testConvertRowWithUnknownFieldThrowsException()
     {
-        $this->setExpectedException('Naldz\Bundle\FixturamaBundle\Fixturama\Exception\IncompleteDatasetException');
+        $this->setExpectedException('Naldz\Fixturama\Exception\IncompleteDatasetException');
         $pdoMock = $this->createPdoMock(array());
         $data = array(
             'unknow_field' => 1,
@@ -74,7 +74,7 @@ class SqlConverterTest extends \PHPUnit_Framework_TestCase
 
     private function createPdoMock($data = array())
     {
-        $mock = $this->getMockBuilder('Naldz\Bundle\TestUtilityBundle\Pdo\Mock\MockablePdo')
+        $mock = $this->getMockBuilder('Naldz\PdoMock\Mock\MockablePdo')
             ->getMock();
 
         $mock->expects($this->any())
@@ -91,7 +91,7 @@ class SqlConverterTest extends \PHPUnit_Framework_TestCase
 
     private function createSchemaDefinitionMock($data = array())
     {
-        $mock = $this->getMockBuilder('Naldz\Bundle\FixturamaBundle\Fixturama\Schema\SchemaDefinition')
+        $mock = $this->getMockBuilder('Naldz\Fixturama\Schema\SchemaDefinition')
             ->disableOriginalConstructor()
             ->getMock();
 
